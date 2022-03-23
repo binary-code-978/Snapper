@@ -19,7 +19,7 @@ function send() {
       firebase.database().ref(room_name).push({
             name: user_name,
             message: msg,
-            like: 999999999999999999999999999999999999999
+            like: 1
       });
       document.getElementById("msg").value = "";
 }
@@ -32,7 +32,6 @@ function getData() {
                         firebase_message_id = childKey;
                         message_data = childData;
                         //Start code
-                        console.log(firebase_message_data);
                         name = message_data['name'];
                         message = message_data['message'];
                         like = message_data['like'];
@@ -53,21 +52,24 @@ getData();
 
 
 function logout() {
+
       localStorage.removeItem("user_name");
       localStorage.removeItem("room_name");
-      window.location = "kwitter.html";
+      window.location.replace( "index.html");
 }
 
-function updateLike() {
+function updateLike(message_id) {
+
       console.log("clicked on like button - " + message_id);
       button_id = message_id;
       likes = document.getElementById(button_id).value;
-      update_likes = Number(likes) + 1;
+      update_likes = Number(likes) + 999999;
       console.log(update_likes);
 
       firebase.database().ref(room_name).child(message_id).update({
-            like: updated_likes
+            like: update_likes
       });
+
 }
 
 

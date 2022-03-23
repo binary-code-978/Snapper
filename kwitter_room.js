@@ -33,7 +33,7 @@ getData();
 function addRoom() {
       room_name = document.getElementById("room_name").value;
 
-      firebase.database().ref("/").child(room.name).update({
+      firebase.database().ref("/").child(room_name).update({
             purpose: "adding room name"
       });
 
@@ -51,7 +51,7 @@ function redirectToRoomName(name) {
 function logout() {
       localStorage.removeItem("user_name");
       localStorage.removeItem("room_name");
-      window.location = "kwitter.html";
+      window.location.replace( "index.html");
 }
 
 
